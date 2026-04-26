@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Things Store — Chocolates Cacau Show | Revenda Premium</title>
-  <meta name="description" content="Revenda autorizada Cacau Show. Os melhores chocolates artesanais para todas as ocasiões. Solicite seu catálogo via WhatsApp.">
+  <meta name="description" content="Revenda autorizada Cacau Show. Os melhores chocolates artesanais para todas as ocasiões.">
   <meta name="theme-color" content="#1A0F08">
   <meta property="og:title" content="All Things Store — Chocolates Premium">
   <meta property="og:description" content="Os melhores chocolates Cacau Show com entrega rápida e atendimento personalizado.">
@@ -24,10 +24,10 @@
       <span class="logo-sub">Revenda Cacau Show</span>
     </a>
     <nav class="nav" id="navMenu">
+      <a href="#favoritos">Favoritos</a>
       <a href="#produtos">Produtos</a>
-      <a href="#historia">Nossa História</a>
+      <a href="#avaliacoes">Avaliações</a>
       <a href="#catalogo">Catálogo</a>
-      <a href="#contato">Contato</a>
     </nav>
     <div class="header-actions">
       <button class="icon-btn" id="cartBtn" aria-label="Abrir carrinho">
@@ -44,12 +44,12 @@
 <main>
 
 <section class="hero" id="inicio">
-  <span class="hero-tag">Chocolates Premium</span>
-  <h1>O extraordinário<br>mora nos <em>detalhes</em></h1>
-  <p class="hero-sub">Uma seleção criteriosa dos melhores chocolates Cacau Show para presentear, surpreender e celebrar momentos memoráveis.</p>
+  <span class="hero-tag">Sobre Nós</span>
+  <h1>Bem-vindo à <em>All Things Store</em></h1>
+  <p class="hero-sub">Somos uma revenda autorizada Cacau Show comprometida em transformar cada presente em uma experiência memorável. Selecionamos cuidadosamente os melhores chocolates artesanais para você surpreender quem ama, celebrar momentos especiais e adoçar o dia a dia com a qualidade e tradição de uma das marcas mais queridas do Brasil. Atendimento próximo, entrega rápida e a certeza de que cada bombom carrega um pedacinho do nosso carinho.</p>
   <div class="hero-actions">
     <button class="btn btn-primary" id="catalogBtnHero">Solicitar Catálogo</button>
-    <a href="#produtos" class="btn btn-outline">Ver Coleção</a>
+    <a href="#favoritos" class="btn btn-outline">Ver Favoritos</a>
   </div>
 </section>
 
@@ -57,6 +57,24 @@
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,0 L0,20 Q60,45 120,25 Q180,10 240,30 Q300,55 360,28 Q420,12 480,35 Q540,50 600,22 Q660,8 720,32 Q780,52 840,25 Q900,10 960,30 Q1020,48 1080,20 Q1140,5 1200,28 Q1260,50 1320,22 Q1380,10 1440,30 L1440,0 Z" fill="#3A2418"/>
     <path d="M120,25 Q125,40 122,55 M360,28 Q358,45 362,58 M600,22 Q605,38 600,52 M840,25 Q843,42 840,56 M1080,20 Q1085,38 1082,55 M1320,22 Q1318,40 1322,55" stroke="#3A2418" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<section class="favorites" id="favoritos">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">⭐ Favoritos da Casa</span>
+      <h2>Nossos <em>queridinhos</em></h2>
+      <p>Os mais pedidos e amados pelos nossos clientes — uma seleção especial pra você experimentar o melhor.</p>
+    </div>
+    <div class="favorites-grid" id="favoritesGrid"></div>
+  </div>
+</section>
+
+<div class="chocolate-drip">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 L0,20 Q60,45 120,25 Q180,10 240,30 Q300,55 360,28 Q420,12 480,35 Q540,50 600,22 Q660,8 720,32 Q780,52 840,25 Q900,10 960,30 Q1020,48 1080,20 Q1140,5 1200,28 Q1260,50 1320,22 Q1380,10 1440,30 L1440,0 Z" fill="#1F100A"/>
+    <path d="M120,25 Q125,40 122,55 M360,28 Q358,45 362,58 M600,22 Q605,38 600,52 M840,25 Q843,42 840,56 M1080,20 Q1085,38 1082,55 M1320,22 Q1318,40 1322,55" stroke="#1F100A" stroke-width="3" fill="none" stroke-linecap="round"/>
   </svg>
 </div>
 
@@ -71,24 +89,23 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
       <input type="text" id="searchInput" placeholder="Buscar produtos..." aria-label="Buscar produtos">
     </div>
-    <div class="filters" id="filters"></div>
+
+    <div class="filter-group">
+      <h4 class="filter-label">Filtrar por Linha</h4>
+      <div class="filters" id="filters"></div>
+    </div>
+
+    <div class="filter-group">
+      <h4 class="filter-label">Filtrar por Preço</h4>
+      <div class="filters" id="priceFilters">
+        <button class="filter-btn active" data-price="all">Todos</button>
+        <button class="filter-btn" data-price="low">Até R$ 50</button>
+        <button class="filter-btn" data-price="mid">R$ 50 a R$ 100</button>
+        <button class="filter-btn" data-price="high">Acima de R$ 100</button>
+      </div>
+    </div>
+
     <div class="products-grid" id="productsGrid"></div>
-  </div>
-</section>
-
-<div class="chocolate-drip">
-  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0,0 L0,20 Q60,45 120,25 Q180,10 240,30 Q300,55 360,28 Q420,12 480,35 Q540,50 600,22 Q660,8 720,32 Q780,52 840,25 Q900,10 960,30 Q1020,48 1080,20 Q1140,5 1200,28 Q1260,50 1320,22 Q1380,10 1440,30 L1440,0 Z" fill="#1F100A"/>
-    <path d="M120,25 Q125,40 122,55 M360,28 Q358,45 362,58 M600,22 Q605,38 600,52 M840,25 Q843,42 840,56 M1080,20 Q1085,38 1082,55 M1320,22 Q1318,40 1322,55" stroke="#1F100A" stroke-width="3" fill="none" stroke-linecap="round"/>
-  </svg>
-</div>
-
-<section class="story" id="historia">
-  <div class="story-content">
-    <span class="section-tag">Nossa História</span>
-    <h2>Presentear também é<br>uma forma de <em>ser lembrado</em></h2>
-    <p>Como revenda autorizada Cacau Show, nascemos do desejo de levar até você o que existe de melhor no universo do chocolate. Cada caixa entregue é um gesto de carinho. Cada bombom, uma pequena celebração.</p>
-    <p>Trabalhamos com atenção aos detalhes, atendimento próximo e a certeza de que o presente certo nunca é esquecido.</p>
   </div>
 </section>
 
@@ -100,26 +117,32 @@
 </div>
 
 <section class="benefits">
-  <div class="benefits-grid">
-    <div class="benefit reveal">
-      <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
-      <h3>Produtos Originais</h3>
-      <p>Revenda autorizada Cacau Show com garantia de qualidade</p>
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Vantagens</span>
+      <h2>Por que comprar <em>conosco</em></h2>
     </div>
-    <div class="benefit reveal">
-      <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-      <h3>Atendimento Próximo</h3>
-      <p>Tire dúvidas e faça pedidos diretamente pelo WhatsApp</p>
-    </div>
-    <div class="benefit reveal">
-      <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg></div>
-      <h3>Para Toda Ocasião</h3>
-      <p>Presentes corporativos, datas especiais e momentos íntimos</p>
-    </div>
-    <div class="benefit reveal">
-      <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
-      <h3>Pagamento Seguro</h3>
-      <p>Combinado diretamente conosco com total transparência</p>
+    <div class="benefits-grid">
+      <div class="benefit reveal">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+        <h3>Produtos Originais</h3>
+        <p>Revenda autorizada Cacau Show com garantia de qualidade</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <h3>Atendimento Próximo</h3>
+        <p>Tire dúvidas e faça pedidos diretamente pelo WhatsApp</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg></div>
+        <h3>Para Toda Ocasião</h3>
+        <p>Presentes corporativos, datas especiais e momentos íntimos</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
+        <h3>Pagamento Seguro</h3>
+        <p>Combinado diretamente conosco com total transparência</p>
+      </div>
     </div>
   </div>
 </section>
@@ -128,6 +151,96 @@
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,0 L0,20 Q60,45 120,25 Q180,10 240,30 Q300,55 360,28 Q420,12 480,35 Q540,50 600,22 Q660,8 720,32 Q780,52 840,25 Q900,10 960,30 Q1020,48 1080,20 Q1140,5 1200,28 Q1260,50 1320,22 Q1380,10 1440,30 L1440,0 Z" fill="#1A0F08"/>
     <path d="M120,25 Q125,40 122,55 M360,28 Q358,45 362,58 M600,22 Q605,38 600,52 M840,25 Q843,42 840,56 M1080,20 Q1085,38 1082,55 M1320,22 Q1318,40 1322,55" stroke="#1A0F08" stroke-width="3" fill="none" stroke-linecap="round"/>
+  </svg>
+</div>
+
+<section class="testimonials" id="avaliacoes">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Avaliações</span>
+      <h2>O que nossos <em>clientes</em> dizem</h2>
+      <p>Histórias reais de quem já presenteou e foi presenteado conosco.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Comprei a Caixa Angel pra dar pra minha mãe no Dia das Mães e ela amou! O atendimento foi super atencioso, me ajudaram a escolher a melhor opção. Chegou tudo certinho e bem embalado."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div>
+            <strong>Mariana Silva</strong>
+            <span>São Paulo, SP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Já é a terceira vez que peço aqui. Sempre fresquinho, entrega rápida e o atendimento pelo WhatsApp é nota dez. Recomendo demais pra quem quer presentear com elegância."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div>
+            <strong>Rafael Mendes</strong>
+            <span>Mogi das Cruzes, SP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Encomendei caixas personalizadas pros clientes da minha empresa no fim de ano. Resultado impecável! Todo mundo elogiou e vou fechar pacote pro próximo Natal também."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">C</div>
+          <div>
+            <strong>Carolina Ferraz</strong>
+            <span>Empresária</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Os bombons da linha laCreme são meu vício! Atendimento humanizado, sempre dão dicas dos lançamentos. Virei cliente fiel da All Things Store."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">J</div>
+          <div>
+            <strong>Juliana Costa</strong>
+            <span>Guarulhos, SP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Pedi um kit pra surpreender minha namorada no aniversário. Veio com cartão personalizado, embalagem linda. Ela amou! Voltarei sempre."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">L</div>
+          <div>
+            <strong>Lucas Almeida</strong>
+            <span>São Paulo, SP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Atendimento excepcional! Tinham paciência de mostrar várias opções até eu escolher. Os Dreams premiados são divinos. Chocolate de qualidade com preço justo."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">P</div>
+          <div>
+            <strong>Patrícia Oliveira</strong>
+            <span>Suzano, SP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="chocolate-drip">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 L0,20 Q60,45 120,25 Q180,10 240,30 Q300,55 360,28 Q420,12 480,35 Q540,50 600,22 Q660,8 720,32 Q780,52 840,25 Q900,10 960,30 Q1020,48 1080,20 Q1140,5 1200,28 Q1260,50 1320,22 Q1380,10 1440,30 L1440,0 Z" fill="#3A2418"/>
+    <path d="M120,25 Q125,40 122,55 M360,28 Q358,45 362,58 M600,22 Q605,38 600,52 M840,25 Q843,42 840,56 M1080,20 Q1085,38 1082,55 M1320,22 Q1318,40 1322,55" stroke="#3A2418" stroke-width="3" fill="none" stroke-linecap="round"/>
   </svg>
 </div>
 
@@ -152,8 +265,9 @@
       <div class="footer-col">
         <h4>Navegação</h4>
         <ul>
+          <li><a href="#favoritos">Favoritos</a></li>
           <li><a href="#produtos">Produtos</a></li>
-          <li><a href="#historia">Nossa História</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
           <li><a href="#catalogo">Catálogo</a></li>
         </ul>
       </div>
