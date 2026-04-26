@@ -13,7 +13,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%233E2723'/><text x='50%25' y='50%25' text-anchor='middle' dominant-baseline='central' font-family='Georgia,serif' font-size='60' fill='%23B8860B' font-weight='600'>A</text></svg>">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -24,7 +23,7 @@
       All Things Store
       <span class="logo-sub">Revenda Cacau Show</span>
     </a>
-    <nav class="nav" id="navMenu" aria-label="Navegação principal">
+    <nav class="nav" id="navMenu">
       <a href="#produtos">Produtos</a>
       <a href="#historia">Nossa História</a>
       <a href="#catalogo">Catálogo</a>
@@ -32,9 +31,7 @@
     </nav>
     <div class="header-actions">
       <button class="icon-btn" id="cartBtn" aria-label="Abrir carrinho">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
         <span class="cart-count" id="cartCount">0</span>
       </button>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
@@ -51,12 +48,7 @@
   <h1>O extraordinário<br>mora nos <em>detalhes</em></h1>
   <p class="hero-sub">Uma seleção criteriosa dos melhores chocolates Cacau Show para presentear, surpreender e celebrar momentos memoráveis.</p>
   <div class="hero-actions">
-    <button class="btn btn-primary" id="catalogBtnHero">
-      Solicitar Catálogo
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-      </svg>
-    </button>
+    <button class="btn btn-primary" id="catalogBtnHero">Solicitar Catálogo</button>
     <a href="#produtos" class="btn btn-outline">Ver Coleção</a>
   </div>
 </section>
@@ -69,12 +61,10 @@
       <p>Cada peça é uma experiência. Explore nossa seleção de bombons, tabletes, trufas e presentes especiais.</p>
     </div>
     <div class="search-bar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
       <input type="text" id="searchInput" placeholder="Buscar produtos..." aria-label="Buscar produtos">
     </div>
-    <div class="filters" id="filters" role="group" aria-label="Filtrar por categoria"></div>
+    <div class="filters" id="filters"></div>
     <div class="products-grid" id="productsGrid"></div>
   </div>
 </section>
@@ -91,38 +81,22 @@
 <section class="benefits">
   <div class="benefits-grid">
     <div class="benefit reveal">
-      <div class="benefit-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-        </svg>
-      </div>
+      <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
       <h3>Produtos Originais</h3>
       <p>Revenda autorizada Cacau Show com garantia de qualidade</p>
     </div>
     <div class="benefit reveal">
-      <div class="benefit-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-      </div>
+      <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
       <h3>Atendimento Próximo</h3>
       <p>Tire dúvidas e faça pedidos diretamente pelo WhatsApp</p>
     </div>
     <div class="benefit reveal">
-      <div class="benefit-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
-        </svg>
-      </div>
+      <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg></div>
       <h3>Para Toda Ocasião</h3>
       <p>Presentes corporativos, datas especiais e momentos íntimos</p>
     </div>
     <div class="benefit reveal">
-      <div class="benefit-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-        </svg>
-      </div>
+      <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></div>
       <h3>Pagamento Seguro</h3>
       <p>Combinado diretamente conosco com total transparência</p>
     </div>
@@ -134,12 +108,7 @@
     <span class="section-tag">Catálogo Completo</span>
     <h2>Receba nosso catálogo <em>completo</em></h2>
     <p>Mais de 200 produtos selecionados para você presentear ou se deliciar. Solicite agora pelo WhatsApp e atendimento personalizado.</p>
-    <button class="btn btn-gold" id="catalogBtn">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.91L4 20l4.2-1.1a7.93 7.93 0 003.84.98h.01a7.95 7.95 0 007.94-7.94 7.9 7.9 0 00-2.39-5.62zM12.05 18.5h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.6 6.6 0 01-1.01-3.5c0-3.64 2.97-6.6 6.61-6.6a6.55 6.55 0 014.66 1.94 6.55 6.55 0 011.92 4.66 6.61 6.61 0 01-6.59 6.58zm3.62-4.93c-.2-.1-1.18-.58-1.36-.65-.18-.07-.31-.1-.45.1-.13.2-.51.65-.62.78-.12.13-.23.15-.42.05-.2-.1-.84-.31-1.59-.99-.59-.52-.99-1.17-1.1-1.36-.12-.2-.01-.3.09-.4.09-.1.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.32-.34-.45-.35h-.39c-.13 0-.34.05-.52.25s-.69.67-.69 1.64c0 .96.7 1.9.8 2.02.1.13 1.39 2.12 3.36 2.97.47.2.84.33 1.12.42.47.15.9.13 1.24.08.38-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.95-.05-.08-.18-.13-.38-.23z"/>
-      </svg>
-      Solicitar pelo WhatsApp
-    </button>
+    <button class="btn btn-gold" id="catalogBtn">Solicitar pelo WhatsApp</button>
   </div>
 </section>
 
@@ -150,7 +119,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>All Things Store</h3>
-        <p>Revenda autorizada Cacau Show. Os melhores chocolates artesanais para todos os momentos especiais. Atendimento personalizado e entrega rápida.</p>
+        <p>Revenda autorizada Cacau Show. Os melhores chocolates artesanais para todos os momentos especiais.</p>
       </div>
       <div class="footer-col">
         <h4>Navegação</h4>
@@ -163,31 +132,27 @@
       <div class="footer-col">
         <h4>Contato</h4>
         <ul>
-          <li><a href="https://wa.me/5511940277555" target="_blank" rel="noopener">WhatsApp: (11) 94027-7555</a></li>
+          <li><a href="https://wa.me/5511940277555" target="_blank">WhatsApp: (11) 94027-7555</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 All Things Store · Revenda autorizada Cacau Show · Todos os direitos reservados</p>
+      <p>© 2026 All Things Store · Revenda autorizada Cacau Show</p>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/5511940277555?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Falar no WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.91L4 20l4.2-1.1a7.93 7.93 0 003.84.98h.01a7.95 7.95 0 007.94-7.94 7.9 7.9 0 00-2.39-5.62zM12.05 18.5h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.6 6.6 0 01-1.01-3.5c0-3.64 2.97-6.6 6.61-6.6a6.55 6.55 0 014.66 1.94 6.55 6.55 0 011.92 4.66 6.61 6.61 0 01-6.59 6.58zm3.62-4.93c-.2-.1-1.18-.58-1.36-.65-.18-.07-.31-.1-.45.1-.13.2-.51.65-.62.78-.12.13-.23.15-.42.05-.2-.1-.84-.31-1.59-.99-.59-.52-.99-1.17-1.1-1.36-.12-.2-.01-.3.09-.4.09-.1.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.32-.34-.45-.35h-.39c-.13 0-.34.05-.52.25s-.69.67-.69 1.64c0 .96.7 1.9.8 2.02.1.13 1.39 2.12 3.36 2.97.47.2.84.33 1.12.42.47.15.9.13 1.24.08.38-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.95-.05-.08-.18-.13-.38-.23z"/>
-  </svg>
+<a href="https://wa.me/5511940277555?text=Ol%C3%A1!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es" target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.88 11.91L4 20l4.2-1.1a7.93 7.93 0 003.84.98h.01a7.95 7.95 0 007.94-7.94 7.9 7.9 0 00-2.39-5.62zM12.05 18.5h-.01a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.66.67-2.43-.16-.25a6.6 6.6 0 01-1.01-3.5c0-3.64 2.97-6.6 6.61-6.6a6.55 6.55 0 014.66 1.94 6.55 6.55 0 011.92 4.66 6.61 6.61 0 01-6.59 6.58zm3.62-4.93c-.2-.1-1.18-.58-1.36-.65-.18-.07-.31-.1-.45.1-.13.2-.51.65-.62.78-.12.13-.23.15-.42.05-.2-.1-.84-.31-1.59-.99-.59-.52-.99-1.17-1.1-1.36-.12-.2-.01-.3.09-.4.09-.1.2-.23.3-.35.1-.12.13-.2.2-.33.06-.13.03-.25-.02-.35-.05-.1-.45-1.08-.62-1.48-.16-.39-.32-.34-.45-.35h-.39c-.13 0-.34.05-.52.25s-.69.67-.69 1.64c0 .96.7 1.9.8 2.02.1.13 1.39 2.12 3.36 2.97.47.2.84.33 1.12.42.47.15.9.13 1.24.08.38-.06 1.18-.48 1.34-.95.17-.46.17-.86.12-.95-.05-.08-.18-.13-.38-.23z"/></svg>
 </a>
 
 <div class="cart-overlay" id="cartOverlay"></div>
 
-<aside class="cart-sidebar" id="cartSidebar" aria-label="Carrinho de compras">
+<aside class="cart-sidebar" id="cartSidebar">
   <div class="cart-header">
     <h3>Seu Carrinho</h3>
-    <button class="cart-close" id="cartClose" aria-label="Fechar carrinho">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
+    <button class="cart-close" id="cartClose" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
   </div>
   <div class="cart-items" id="cartItems"></div>
@@ -196,5 +161,14 @@
       <span>Total</span>
       <span id="cartTotal">R$ 0,00</span>
     </div>
-    <button class="cart-checkout" id="cartCheckout" disabled>
-      <svg viewBox="0 0 24 24"
+    <button class="cart-checkout" id="cartCheckout" disabled>Finalizar pelo WhatsApp</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/products.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
