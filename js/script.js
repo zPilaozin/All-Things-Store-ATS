@@ -1,19 +1,31 @@
 // ============================================
-// ALL THINGS STORE - SCRIPT PRINCIPAL
+// ALL THINGS STORE - SCRIPT PRINCIPAL v4
+// Com favoritos, filtros duplos e depoimentos
 // ============================================
 
-// CONFIGURAÇÃO - edite aqui se mudar o WhatsApp
 const WHATSAPP_NUMBER = '5511940277555';
 const STORE_NAME = 'All Things Store';
+
+// IDs dos 5 produtos favoritos (1 de cada categoria popular)
+const FAVORITE_IDS = [
+  '1003290',  // Caixa Angel Coleção Sortidos (Angel)
+  '1004022',  // Caixa laCreme Sortidos (laCreme)
+  '1002485',  // Caixa Bendito Cacao (Intenso)
+  '1003636',  // Tablete LaNut Pistache Dubai (LaNut)
+  '1003872'   // Caixa Gourmet (Clássicos)
+];
 
 // Estado da aplicação
 let cart = [];
 let currentFilter = 'all';
+let currentPriceFilter = 'all';
 let currentSearch = '';
 
 // === ELEMENTOS DOM ===
 const productsGrid = document.getElementById('productsGrid');
+const favoritesGrid = document.getElementById('favoritesGrid');
 const filtersContainer = document.getElementById('filters');
+const priceFiltersContainer = document.getElementById('priceFilters');
 const searchInput = document.getElementById('searchInput');
 const cartBtn = document.getElementById('cartBtn');
 const cartCountEl = document.getElementById('cartCount');
@@ -29,7 +41,49 @@ const navMenu = document.getElementById('navMenu');
 const catalogBtn = document.getElementById('catalogBtn');
 const catalogBtnHero = document.getElementById('catalogBtnHero');
 
-// === RENDERIZAR FILTROS ===
+// === RENDERIZAR FAVORITOS ===
+function renderFavorites() {
+  if (!favoritesGrid) return;
+
+  const favorites = FAVORITE_IDS
+    .map(id => PRODUCTS.find(p => p.id === id))
+    .filter(Boolean);
+
+  favoritesGrid.innerHTML = favorites.map(p => {
+    const initial = p.name.charAt(0).toUpperCase();
+    const categoryName = CATEGORIES[p.category]?.name || '';
+    return `
+      <article class="product-card favorite-card reveal">
+        <div class="product-image">
+          ${categoryName ? `<span class="product-tag">${categoryName}</span>` : ''}
+          <span class="product-icon">${initial}</span>
+        </div>
+        <div class="product-info">
+          <h3>${p.name}</h3>
+          <span class="product-weight">${p.weight}</span>
+          <p class="product-desc">${p.desc}</p>
+          <div class="product-footer">
+            <div class="product-price">
+              R$ ${p.price.toFixed(2).replace('.', ',')}
+              <span>cada</span>
+            </div>
+            <button class="btn-add" data-id="${p.id}" aria-label="Adicionar ${p.name}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  favoritesGrid.querySelectorAll('.btn-add').forEach(btn => {
+    btn.addEventListener('click', () => addToCart(btn.dataset.id));
+  });
+}
+
+// === RENDERIZAR FILTROS DE LINHA ===
 function renderFilters() {
   let html = `<button class="filter-btn active" data-cat="all">Todos</button>`;
   for (const [key, value] of Object.entries(CATEGORIES)) {
@@ -47,20 +101,42 @@ function renderFilters() {
   });
 }
 
+// === FILTROS DE PREÇO ===
+function setupPriceFilters() {
+  priceFiltersContainer.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      priceFiltersContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentPriceFilter = btn.dataset.price;
+      renderProducts();
+    });
+  });
+}
+
+function matchesPriceFilter(price) {
+  switch (currentPriceFilter) {
+    case 'low': return price < 50;
+    case 'mid': return price >= 50 && price <= 100;
+    case 'high': return price > 100;
+    default: return true;
+  }
+}
+
 // === RENDERIZAR PRODUTOS ===
 function renderProducts() {
   const filtered = PRODUCTS.filter(p => {
     const matchesCategory = currentFilter === 'all' || p.category === currentFilter;
+    const matchesPrice = matchesPriceFilter(p.price);
     const matchesSearch = !currentSearch ||
       p.name.toLowerCase().includes(currentSearch) ||
       p.desc.toLowerCase().includes(currentSearch);
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesPrice && matchesSearch;
   });
 
   if (filtered.length === 0) {
     productsGrid.innerHTML = `
       <div class="no-results">
-        <p>Nenhum produto encontrado.</p>
+        <p>Nenhum produto encontrado com esses filtros.</p>
       </div>
     `;
     return;
@@ -96,9 +172,7 @@ function renderProducts() {
   }).join('');
 
   productsGrid.querySelectorAll('.btn-add').forEach(btn => {
-    btn.addEventListener('click', () => {
-      addToCart(btn.dataset.id);
-    });
+    btn.addEventListener('click', () => addToCart(btn.dataset.id));
   });
 
   observeReveal();
@@ -211,103 +285,4 @@ cartBtn.addEventListener('click', openCart);
 cartCloseBtn.addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart);
 
-// === FINALIZAR PEDIDO NO WHATSAPP ===
-cartCheckoutBtn.addEventListener('click', () => {
-  if (cart.length === 0) return;
-
-  let message = `*Olá! Gostaria de fazer um pedido na ${STORE_NAME}:*\n\n`;
-  cart.forEach(item => {
-    const subtotal = (item.price * item.qty).toFixed(2).replace('.', ',');
-    message += `• ${item.qty}x ${item.name} — R$ ${subtotal}\n`;
-  });
-  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  message += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
-  message += `Aguardo retorno para finalizar. Obrigado!`;
-
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
-});
-
-// === SOLICITAR CATÁLOGO ===
-function requestCatalog() {
-  const message = `Olá! Gostaria de receber o catálogo completo da ${STORE_NAME}.`;
-  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
-}
-
-if (catalogBtn) catalogBtn.addEventListener('click', requestCatalog);
-if (catalogBtnHero) catalogBtnHero.addEventListener('click', requestCatalog);
-
-// === TOAST ===
-let toastTimeout;
-function showToast(message) {
-  clearTimeout(toastTimeout);
-  toast.textContent = message;
-  toast.classList.add('show');
-  toastTimeout = setTimeout(() => toast.classList.remove('show'), 2500);
-}
-
-// === MENU MOBILE ===
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('open');
-});
-
-navMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navMenu.classList.remove('open'));
-});
-
-// === SCROLL SUAVE ===
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const href = link.getAttribute('href');
-    if (href === '#') return;
-    const target = document.querySelector(href);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-// === SCROLL REVEAL ANIMATION ===
-let revealObserver;
-function observeReveal() {
-  if (revealObserver) revealObserver.disconnect();
-  revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-    revealObserver.observe(el);
-  });
-}
-
-// === HEADER SHADOW NO SCROLL ===
-const header = document.querySelector('.header');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
-    header.style.boxShadow = 'var(--shadow-sm)';
-  } else {
-    header.style.boxShadow = 'none';
-  }
-}, { passive: true });
-
-// === ESC FECHA CARRINHO ===
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && cartSidebar.classList.contains('open')) {
-    closeCart();
-  }
-});
-
-// === INIT ===
-document.addEventListener('DOMContentLoaded', () => {
-  renderFilters();
-  renderProducts();
-  updateCart();
-  observeReveal();
-});
+// =
