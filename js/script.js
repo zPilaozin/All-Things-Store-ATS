@@ -285,4 +285,105 @@ cartBtn.addEventListener('click', openCart);
 cartCloseBtn.addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart);
 
-// =
+// === FINALIZAR PEDIDO NO WHATSAPP ===
+cartCheckoutBtn.addEventListener('click', () => {
+  if (cart.length === 0) return;
+
+  let message = `*Olá! Gostaria de fazer um pedido na ${STORE_NAME}:*\n\n`;
+  cart.forEach(item => {
+    const subtotal = (item.price * item.qty).toFixed(2).replace('.', ',');
+    message += `• ${item.qty}x ${item.name} — R$ ${subtotal}\n`;
+  });
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  message += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
+  message += `Aguardo retorno para finalizar. Obrigado!`;
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+});
+
+// === SOLICITAR CATÁLOGO ===
+function requestCatalog() {
+  const message = `Olá! Gostaria de receber o catálogo completo da ${STORE_NAME}.`;
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+}
+
+if (catalogBtn) catalogBtn.addEventListener('click', requestCatalog);
+if (catalogBtnHero) catalogBtnHero.addEventListener('click', requestCatalog);
+
+// === TOAST ===
+let toastTimeout;
+function showToast(message) {
+  clearTimeout(toastTimeout);
+  toast.textContent = message;
+  toast.classList.add('show');
+  toastTimeout = setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+// === MENU MOBILE ===
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('open');
+});
+
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navMenu.classList.remove('open'));
+});
+
+// === SCROLL SUAVE ===
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// === SCROLL REVEAL ANIMATION ===
+let revealObserver;
+function observeReveal() {
+  if (revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    revealObserver.observe(el);
+  });
+}
+
+// === HEADER SHADOW NO SCROLL ===
+const header = document.querySelector('.header');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) {
+    header.style.boxShadow = 'var(--shadow-sm)';
+  } else {
+    header.style.boxShadow = 'none';
+  }
+}, { passive: true });
+
+// === ESC FECHA CARRINHO ===
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && cartSidebar.classList.contains('open')) {
+    closeCart();
+  }
+});
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => {
+  renderFavorites();
+  renderFilters();
+  setupPriceFilters();
+  renderProducts();
+  updateCart();
+  observeReveal();
+});
